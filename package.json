@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client",
+    "e2e"
+  ],
+  "scripts": {
+    "build:client": "yarn workspace sudoku-personal-project-client build",
+    "dev": "yarn workspace sudoku-personal-project-server dev",
+    "dev:debug": "yarn workspace sudoku-personal-project-server dev:debug",
+    "heroku-postbuild": "yarn workspace sudoku-personal-project-client build",
+    "start": "yarn workspace sudoku-personal-project-server start",
+    "dev:cypress": "yarn workspace sudoku-personal-project-server dev:e2e",
+    "e2e:open": "yarn workspace sudoku-personal-project-e2e e2e:open",
+    "e2e:run": "yarn workspace sudoku-personal-project-e2e e2e:run"
+  },
+  "engines": {
+    "node": "^14.15"
+  }
+}
