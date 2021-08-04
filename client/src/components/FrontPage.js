@@ -1,8 +1,9 @@
 import React,  { useState } from "react"
+import { Link } from "react-router-dom"
 import { Redirect } from "react-router-dom"
 
 const FrontPage = (props) => {
-
+  
   let checkLogin
   if (props.userId === undefined) {
     checkLogin = (
@@ -12,9 +13,14 @@ const FrontPage = (props) => {
     )
   } else {
     checkLogin = (
-      <p>
-        Here are some puzzles!
-      </p>
+      <div>
+        <p>
+          Here are some puzzles!
+        </p>
+        <Link to="/puzzle/1"><button className="button">Easy Puzzle</button></Link>
+        <Link to="/puzzle/2"><button className="button">Medium Puzzle</button></Link>
+        <Link to="/puzzle/3"><button className="button">Hard Puzzle</button></Link>
+      </div>
     )
   }
 
