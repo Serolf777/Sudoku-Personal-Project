@@ -8,8 +8,8 @@ import RegistrationForm from "./registration/RegistrationForm.js";
 import SignInForm from "./authentication/SignInForm.js";
 import TopBar from "./layout/TopBar.js";
 import FrontPage from "./FrontPage.js"
-import PuzzleShow from "./puzzleShow.js"
-import PuzzlePage from "./puzzlePage.js"
+import PuzzleShow from "./PuzzleShow.js"
+import PuzzlePage from "./PuzzlePage.js"
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -35,13 +35,13 @@ const App = (props) => {
       <Switch>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
-        <Route exact path ="/">
+        <Route exact path="/">
           <FrontPage userId={userId}/>
         </Route>
-        <Route exact path ="/puzzle/:id">
+        <Route exact path="/puzzle/:id">
           <PuzzleShow userId={userId} />
         </Route>
-        <Route exact path ="/puzzles">
+        <Route exact path="/puzzles">
           <PuzzlePage userId={userId} />
         </Route>
 

@@ -2,9 +2,9 @@ import express from "express"
 import { Puzzle } from "../../../models/index.js"
 import PuzzleSerializer from "../../../serializers/puzzleSerializer.js"
 
-const puzzleRouter = new express.Router()
+const puzzlesRouter = new express.Router()
 
-puzzleRouter.get("/:id", async (req, res) => {
+puzzlesRouter.get("/:id", async (req, res) => {
   try {
     const puzzleId = req.params.id
     const puzzle = await Puzzle.query().findById(puzzleId)
@@ -16,4 +16,4 @@ puzzleRouter.get("/:id", async (req, res) => {
   }
 })
 
-export default puzzleRouter
+export default puzzlesRouter

@@ -15,17 +15,15 @@ const FrontPage = (props) => {
     checkLogin = (
       <div>
         <p>
-          Here are some puzzles!
+          Now let's get you to the puzzles!
         </p>
-        <Link to="/puzzle/1"><button className="button">Easy Puzzle</button></Link>
-        <Link to="/puzzle/2"><button className="button">Medium Puzzle</button></Link>
-        <Link to="/puzzle/3"><button className="button">Hard Puzzle</button></Link>
+        <Link to="/puzzles">Click here!</Link>
       </div>
     )
   }
 
   return(
-    <div>
+    <div className="callout primary">
       <h1>
         Welcome to the wonderful world of Sudoku puzzles!
       </h1>

@@ -25,80 +25,89 @@ class Puzzle extends Model {
         BoxSix, 
         BoxSeven, 
         BoxEight, 
-        BoxNine
+        BoxNine,
+        Boxes
       } = require("./index.js")
     
     return {
-      boxone: {
+      boxOne: {
         relation: Model.HasOneRelation,
         modelClass: BoxOne,
         join: {
           from: "puzzles.id",
-          to: "boxone.puzzleId"
+          to: "boxOne.puzzleId"
         }
       },
-      boxtwo: {
+      boxTwo: {
         relation: Model.HasOneRelation,
         modelClass: BoxTwo,
         join: {
           from: "puzzles.id",
-          to: "boxtwo.puzzleId"
+          to: "boxTwo.puzzleId"
         }
       },
-      boxthree: {
+      boxThree: {
         relation: Model.HasOneRelation,
         modelClass: BoxThree,
         join: {
           from: "puzzles.id",
-          to: "boxthree.puzzleId"
+          to: "boxThree.puzzleId"
         }
       },
-      boxfour: {
+      boxFour: {
         relation: Model.HasOneRelation,
         modelClass: BoxFour,
         join: {
           from: "puzzles.id",
-          to: "boxfour.puzzleId"
+          to: "boxFour.puzzleId"
         }
       },
-      boxfive: {
+      boxFive: {
         relation: Model.HasOneRelation,
         modelClass: BoxFive,
         join: {
           from: "puzzles.id",
-          to: "boxfive.puzzleId"
+          to: "boxFive.puzzleId"
         }
       },
-      boxsix: {
+      boxSix: {
         relation: Model.HasOneRelation,
         modelClass: BoxSix,
         join: {
           from: "puzzles.id",
-          to: "boxsix.puzzleId"
+          to: "boxSix.puzzleId"
         }
       },
-      boxseven: {
+      boxSeven: {
         relation: Model.HasOneRelation,
         modelClass: BoxSeven,
         join: {
           from: "puzzles.id",
-          to: "boxseven.puzzleId"
+          to: "boxSeven.puzzleId"
         }
       },
-      boxeight: {
+      boxEight: {
         relation: Model.HasOneRelation,
         modelClass: BoxEight,
         join: {
           from: "puzzles.id",
-          to: "boxeight.puzzleId"
+          to: "boxEight.puzzleId"
         }
       },
-      boxnine: {
+      boxNine: {
         relation: Model.HasOneRelation,
         modelClass: BoxNine,
         join: {
           from: "puzzles.id",
-          to: "boxnine.puzzleId"
+          to: "boxNine.puzzleId"
+        }
+      },
+      boxes: {
+        relation: Model.HasOneRelation,
+        modelClass: Boxes,
+        join: {
+          from: "puzzles.id",
+          to: "boxes.puzzleId"
         }
       }
 

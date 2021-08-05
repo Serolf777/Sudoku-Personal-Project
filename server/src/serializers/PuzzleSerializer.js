@@ -9,15 +9,16 @@ class PuzzleSerializer {
       serializedPuzzle[attribute] = puzzle[attribute]
     })
 
-    const boxOne = await puzzle.$relatedQuery("boxone")
-    const boxTwo = await puzzle.$relatedQuery("boxtwo")
-    const boxThree = await puzzle.$relatedQuery("boxthree")
-    const boxFour = await puzzle.$relatedQuery("boxfour")
-    const boxFive = await puzzle.$relatedQuery("boxfive")
-    const boxSix = await puzzle.$relatedQuery("boxsix")
-    const boxSeven = await puzzle.$relatedQuery("boxseven")
-    const boxEight = await puzzle.$relatedQuery("boxeight")
-    const boxNine = await puzzle.$relatedQuery("boxnine")
+    const boxOne = await puzzle.$relatedQuery("boxOne")
+    const boxTwo = await puzzle.$relatedQuery("boxTwo")
+    const boxThree = await puzzle.$relatedQuery("boxThree")
+    const boxFour = await puzzle.$relatedQuery("boxFour")
+    const boxFive = await puzzle.$relatedQuery("boxFive")
+    const boxSix = await puzzle.$relatedQuery("boxSix")
+    const boxSeven = await puzzle.$relatedQuery("boxSeven")
+    const boxEight = await puzzle.$relatedQuery("boxEight")
+    const boxNine = await puzzle.$relatedQuery("boxNine")
+    let boxes = await puzzle.$relatedQuery("boxes")
 
     serializedPuzzle.boxOne = boxOne
     serializedPuzzle.boxTwo = boxTwo
@@ -28,7 +29,7 @@ class PuzzleSerializer {
     serializedPuzzle.boxSeven = boxSeven
     serializedPuzzle.boxEight = boxEight
     serializedPuzzle.boxNine = boxNine
-
+    serializedPuzzle.boxes = boxes
 
     return serializedPuzzle
   }

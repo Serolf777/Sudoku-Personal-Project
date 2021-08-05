@@ -3,19 +3,14 @@ import InputBox from "./InputBox.js"
 
 const BoxTile = (props) => {
 
-  let squareOne
-  let squareTwo
-  let squareThree
-  let squareFour
-  let squareFive
-  let squareSix
-  let squareSeven
-  let squareEight
-  let squareNine
+  let squareOne, squareTwo, squareThree, 
+      squareFour, squareFive, squareSix, 
+      squareSeven, squareEight, squareNine
+
 
   if(props.puzzle.squareOne === 0){
     squareOne =
-    <InputBox id="boxone" name="boxone"/>
+    <InputBox id="boxOne" name="boxOne"/>
   }
   else{
     squareOne =
@@ -26,7 +21,7 @@ const BoxTile = (props) => {
 
   if(props.puzzle.squareTwo === 0){
     squareTwo =
-    <InputBox id="boxtwo" name="boxtwo"/>
+    <InputBox id="boxTwo" name="boxTwo"/>
   }
   else{
     squareTwo =
@@ -37,7 +32,7 @@ const BoxTile = (props) => {
 
   if(props.puzzle.squareThree === 0){
     squareThree =
-    <InputBox id="boxthree" name="boxthree"/>
+    <InputBox id="boxThree" name="boxThree"/>
   }
   else{
     squareThree =
@@ -48,7 +43,7 @@ const BoxTile = (props) => {
 
   if(props.puzzle.squareFour === 0){
     squareFour =
-    <InputBox id="boxfour" name="boxfour"/>
+    <InputBox id="boxFour" name="boxFour"/>
   }
   else{
     squareFour =
@@ -59,7 +54,7 @@ const BoxTile = (props) => {
 
   if(props.puzzle.squareFive === 0){
     squareFive =
-    <InputBox id="boxfive" name="boxfive"/>
+    <InputBox id="boxFive" name="boxFive"/>
   }
   else{
     squareFive =
@@ -70,7 +65,7 @@ const BoxTile = (props) => {
 
   if(props.puzzle.squareSix === 0){
     squareSix =
-    <InputBox id="boxsix" name="boxsix"/>
+    <InputBox id="boxSix" name="boxSix"/>
   }
   else{
     squareSix =
@@ -81,7 +76,7 @@ const BoxTile = (props) => {
 
   if(props.puzzle.squareSeven === 0){
     squareSeven =
-    <InputBox id="boxseven" name="boxseven"/>
+    <InputBox id="boxSeven" name="boxSeven"/>
   }
   else{
     squareSeven =
@@ -92,7 +87,7 @@ const BoxTile = (props) => {
 
   if(props.puzzle.squareEight === 0){
     squareEight =
-    <InputBox id="boxeight" name="boxeight"/>
+    <InputBox id="boxEight" name="boxEight"/>
   }
   else{
     squareEight =
@@ -103,7 +98,7 @@ const BoxTile = (props) => {
 
   if(props.puzzle.squareNine === 0){
     squareNine =
-    <InputBox id="boxnine" name="boxnine"/>
+    <InputBox id="boxNine" name="boxNine"/>
   }
   else{
     squareNine =

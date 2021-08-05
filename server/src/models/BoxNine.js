@@ -2,7 +2,7 @@ const Model = require("./Model.js")
 
 class BoxNine extends Model {
   static get tableName() {
-    return "boxnine"
+    return "boxNine"
   }
 
   static get jsonSchema() {
@@ -43,7 +43,7 @@ class BoxNine extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Puzzle,
         join: {
-          from: "boxnine.puzzleId",
+          from: "boxNine.puzzleId",
           to: "puzzles.id"
         }
       }

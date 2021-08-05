@@ -8,11 +8,16 @@ const puzzlePage = (props) => {
   return(
     <div className="callout primary">
       <h1>Here are some puzzles!</h1>
-        <Link to="/puzzle/1"><button className="button">Easy Puzzle</button></Link>
-        <Link to="/puzzle/2"><button className="button">Medium Puzzle</button></Link>
-        <Link to="/puzzle/3"><button className="button">Hard Puzzle</button></Link>
+        <p>
+          <Link to="/puzzle/1">Easy Puzzle!</Link>
+        </p>
+        <p>
+          <Link to="/puzzle/2">Medium Puzzle!</Link>
+        </p>
+        <p>
+          <Link to="/puzzle/3">Hard Puzzle!</Link>
+        </p>
     </div>
   )
-
 }
 export default puzzlePage

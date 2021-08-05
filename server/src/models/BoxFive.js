@@ -2,24 +2,24 @@ const Model = require("./Model.js")
 
 class BoxFive extends Model {
   static get tableName() {
-    return "boxfive"
+    return "boxFive"
   }
 
   static get jsonSchema() {
     return {
       type: "object",
       required: [
-                  "squareOne", 
-                  "squareTwo", 
-                  "squareThree", 
-                  "squareFour", 
-                  "squareFive", 
-                  "squareSix", 
-                  "squareSeven",
-                  "squareEight", 
-                  "squareNine", 
-                  "puzzleId"
-                ],
+        "squareOne", 
+        "squareTwo", 
+        "squareThree", 
+        "squareFour", 
+        "squareFive", 
+        "squareSix", 
+        "squareSeven",
+        "squareEight", 
+        "squareNine", 
+        "puzzleId"
+      ],
       properties: {
         squareOne: { type: "integer"},
         squareTwo: { type: "integer"},
@@ -43,7 +43,7 @@ class BoxFive extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Puzzle,
         join: {
-          from: "boxfive.puzzleId",
+          from: "boxFive.puzzleId",
           to: "puzzles.id"
         }
       }

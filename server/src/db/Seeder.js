@@ -9,6 +9,7 @@ import BoxSixSeeder from "./seeders/BoxSixSeeder.js"
 import BoxSevenSeeder from "./seeders/BoxSevenSeeder.js"
 import BoxEightSeeder from "./seeders/BoxEightSeeder.js"
 import BoxNineSeeder from "./seeders/BoxNineSeeder.js"
+import BoxesSeeder from "./seeders/BoxesSeeder.js"
 
 
 class Seeder {
@@ -43,6 +44,10 @@ class Seeder {
 
     console.log("Seeding box nine... uh huh!")
     await BoxNineSeeder.seed()
+
+    console.log("Seeding all boxes... Whew!")
+    await BoxesSeeder.seed()
+
 
     
     console.log("Done!")

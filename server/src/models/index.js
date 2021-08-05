@@ -10,5 +10,19 @@ const BoxSeven = require("./BoxSeven.js")
 const BoxEight = require("./BoxEight.js")
 const BoxNine = require("./BoxNine.js")
 const Puzzle = require("./Puzzle.js")
+const Boxes = require("./Boxes.js")
 
-module.exports = {User, BoxOne, BoxTwo, BoxThree, BoxFour, BoxFive, BoxSix, BoxSeven, BoxEight, BoxNine, Puzzle};
+module.exports = {
+                  User,
+                  BoxOne,
+                  BoxTwo,
+                  BoxThree,
+                  BoxFour,
+                  BoxFive,
+                  BoxSix,
+                  BoxSeven,
+                  BoxEight,
+                  BoxNine,
+                  Puzzle,
+                  Boxes
+                };

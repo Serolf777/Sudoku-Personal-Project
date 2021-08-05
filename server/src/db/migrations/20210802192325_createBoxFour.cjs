@@ -6,7 +6,7 @@
  * @param {Knex} knex
  */
  exports.up = async (knex) => {
-  return knex.schema.createTable("boxfour", (table) => {
+  return knex.schema.createTable("boxFour", (table) => {
     table.bigIncrements("id")
     table.integer("squareOne").notNullable()
     table.integer("squareTwo").notNullable()
@@ -27,5 +27,5 @@
  * @param {Knex} knex
  */
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists("boxfour")
+  return knex.schema.dropTableIfExists("boxFour")
 }
