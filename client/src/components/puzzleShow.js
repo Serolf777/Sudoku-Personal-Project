@@ -40,69 +40,68 @@ const puzzleShow = (props) => {
     event.preventDefault()
   }
 
-  
   let boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine
-  if(puzzle.boxOne !== undefined) {
+  if(puzzle.boxes !== undefined) {
     boxOne = 
     <BoxTile
       box="box1"
-      puzzle={puzzle.boxOne} 
+      puzzle={puzzle.boxes.box1} 
       handleInputChange={handleInputChange}
     />
 
     boxTwo=
     <BoxTile
       box="box2"
-      puzzle={puzzle.boxTwo}
+      puzzle={puzzle.boxes.box2}
       handleInputChange={handleInputChange}
     />
 
     boxThree=
     <BoxTile
       box="box3" 
-      puzzle={puzzle.boxThree}
+      puzzle={puzzle.boxes.box3}
       handleInputChange={handleInputChange}
     />
 
     boxFour=
     <BoxTile
       box="box4"
-      puzzle={puzzle.boxFour}
+      puzzle={puzzle.boxes.box4}
       handleInputChange={handleInputChange}
     />
 
     boxFive=
     <BoxTile
       box="box5"
-      puzzle={puzzle.boxFive}
+      puzzle={puzzle.boxes.box5}
       handleInputChange={handleInputChange}
     />
 
     boxSix=
     <BoxTile
       box="box6"
-      puzzle={puzzle.boxSix}
+      puzzle={puzzle.boxes.box6}
       handleInputChange={handleInputChange}
     />
 
     boxSeven=
     <BoxTile
       box="box7"
-      puzzle={puzzle.boxSeven}
+      puzzle={puzzle.boxes.box7}
       handleInputChange={handleInputChange}
     />
 
     boxEight=
     <BoxTile
       box="box8"
-      puzzle={puzzle.boxEight}
+      puzzle={puzzle.boxes.box8}
       handleInputChange={handleInputChange}
     />
 
     boxNine=
     <BoxTile
       box={"box9"}
-      puzzle={puzzle.boxNine}
+      puzzle={puzzle.boxes.box9}
       handleInputChange={handleInputChange}
     />
   }

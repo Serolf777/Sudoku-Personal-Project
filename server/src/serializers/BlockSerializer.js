@@ -1,17 +1,6 @@
 class BlockSerializer {
   static async getDetail(block) {
-    const allowedAttributes = [
-      "squareOne", 
-      "squareTwo", 
-      "squareThree", 
-      "squareFour", 
-      "squareFive", 
-      "squareSix", 
-      "squareSeven",
-      "squareEight", 
-      "squareNine", 
-      "puzzleId"
-    ]
+    const allowedAttributes = ["allBoxes", "puzzleId"]
 
     let serializedBlock = {}
   }
