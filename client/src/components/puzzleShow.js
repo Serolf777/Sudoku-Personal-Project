@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import ErrorList from "./ErrorList.js"
 import translateServerErrors from "../services/translateServerErrors.js"
-import BoxTile from "./BoxTile"
+import BoxTile from "./BoxTile.js"
 
 const PuzzleShow = (props) => {
   const [puzzle, setPuzzle] = useState([])
