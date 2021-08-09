@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import ErrorList from "./ErrorList.js"
 import translateServerErrors from "../services/translateServerErrors.js"
 
-const puzzlePage = (props) => {
+const PuzzlePage = (props) => {
 
   return(
     <div className="callout primary">
@@ -20,4 +20,4 @@ const puzzlePage = (props) => {
     </div>
   )
 }
-export default puzzlePage
+export default PuzzlePage

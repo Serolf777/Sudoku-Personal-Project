@@ -4,8 +4,22 @@ import ErrorList from "./ErrorList.js"
 import translateServerErrors from "../services/translateServerErrors.js"
 import BoxTile from "./BoxTile"
 
-const puzzleShow = (props) => {
+const PuzzleShow = (props) => {
   const [puzzle, setPuzzle] = useState([])
+
+  const [userSaveFile, setUserSaveFile] = useState({
+      box1: [ ],
+      box2: [ ],
+      box3: [ ],
+      box4: [ ],
+      box5: [ ],
+      box6: [ ],
+      box7: [ ],
+      box8: [ ],
+      box9: [ ]
+  })
+
+  const [errors, setErrors] = useState([])
 
   const { id } = useParams()
 
@@ -30,113 +44,83 @@ const puzzleShow = (props) => {
   }, [])
 
   const handleInputChange = (event) => {
-    setPuzzle({
-      ...puzzle,
+    setUserSaveFile({
+      ...userSaveFile,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
+  console.log(userSaveFile)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    try {
+      const response = await fetch("/api/v1/userSaveFile", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify(userSaveFile)
+      })
+      if(!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
+        } else {
+          const errorMessage = `${response.status}: (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      } 
+    } catch(error) {
+      console.error(`Error in Fetch: ${error.message}`)
+    }
   }
 
-  let boxOne, boxTwo, boxThree, boxFour, boxFive, boxSix, boxSeven, boxEight, boxNine
+  let allBoxes = []
+
   if(puzzle.boxes !== undefined) {
-    boxOne = 
-    <BoxTile
-      box="box1"
-      puzzle={puzzle.boxes.box1} 
-      handleInputChange={handleInputChange}
-    />
-
-    boxTwo=
-    <BoxTile
-      box="box2"
-      puzzle={puzzle.boxes.box2}
-      handleInputChange={handleInputChange}
-    />
-
-    boxThree=
-    <BoxTile
-      box="box3" 
-      puzzle={puzzle.boxes.box3}
-      handleInputChange={handleInputChange}
-    />
-
-    boxFour=
-    <BoxTile
-      box="box4"
-      puzzle={puzzle.boxes.box4}
-      handleInputChange={handleInputChange}
-    />
-
-    boxFive=
-    <BoxTile
-      box="box5"
-      puzzle={puzzle.boxes.box5}
-      handleInputChange={handleInputChange}
-    />
-
-    boxSix=
-    <BoxTile
-      box="box6"
-      puzzle={puzzle.boxes.box6}
-      handleInputChange={handleInputChange}
-    />
-
-    boxSeven=
-    <BoxTile
-      box="box7"
-      puzzle={puzzle.boxes.box7}
-      handleInputChange={handleInputChange}
-    />
-
-    boxEight=
-    <BoxTile
-      box="box8"
-      puzzle={puzzle.boxes.box8}
-      handleInputChange={handleInputChange}
-    />
-
-    boxNine=
-    <BoxTile
-      box={"box9"}
-      puzzle={puzzle.boxes.box9}
-      handleInputChange={handleInputChange}
-    />
+    for(const box in puzzle.boxes) {
+      allBoxes.push(
+        <BoxTile
+          box={`${box}`}
+          puzzle={puzzle.boxes[box]} 
+          handleInputChange={handleInputChange}
+        />
+      )
+    }
   }
-
 
   return(
     <div className="callout primary">
       <h2>{puzzle.difficulty}</h2>
+      <ErrorList errors={errors} />
       <form onSubmit={handleSubmit}>    
 
         <div className="grid-x">
-          {boxOne}
-          {boxTwo}
-          {boxThree}
+          {allBoxes[0]}
+          {allBoxes[1]}
+          {allBoxes[2]}
         </div>
         <div className="grid-x">
-          {boxFour}
-          {boxFive}
-          {boxSix}
+          {allBoxes[3]}
+          {allBoxes[4]}
+          {allBoxes[5]}
         </div>
         <div className="grid-x">
-          {boxSeven}
-          {boxEight}
-          {boxNine}
+          {allBoxes[6]}
+          {allBoxes[7]}
+          {allBoxes[8]}
         </div>
 
-      <input className="submit"
+        <input className="submit"
         type="submit"
         value="Submit Attempt"
-      />
-
+        />
       </form>
       
     </div>
   )
 }
 
-export default puzzleShow
+export default PuzzleShow
