@@ -7,7 +7,7 @@ class PuzzleSeeder {
         difficulty: "easy-1"
       },
       {
-        difficulty: "normal-1"
+        difficulty: "medium-1"
       },
       {
         difficulty: "hard-1"

@@ -12,3 +12,12 @@
   -moz-tab-size: 4;
   tab-size: 4;
 }
+
+.sudoku_box {
+  display: table-cell;
+  width: 25px;
+}
+
+.submit{
+  display:block;
+}
