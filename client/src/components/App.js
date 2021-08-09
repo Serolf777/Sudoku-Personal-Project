@@ -8,8 +8,8 @@ import RegistrationForm from "./registration/RegistrationForm.js";
 import SignInForm from "./authentication/SignInForm.js";
 import TopBar from "./layout/TopBar.js";
 import FrontPage from "./FrontPage.js";
-import PuzzleShow from "./PuzzleShow.js";
 import PuzzlePage from "./PuzzlePage.js";
+import PuzzleShow from "./PuzzleShow.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
