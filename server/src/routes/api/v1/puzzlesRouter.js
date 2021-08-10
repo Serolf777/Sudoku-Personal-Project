@@ -1,6 +1,6 @@
 import express from "express"
 import { Puzzle } from "../../../models/index.js"
-import PuzzleSerializer from "../../../serializers/puzzleSerializer.js"
+import PuzzleSerializer from "./../../../serializers/PuzzleSerializer.js"
 
 const puzzlesRouter = new express.Router()
 
