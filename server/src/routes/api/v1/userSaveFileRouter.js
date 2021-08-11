@@ -17,13 +17,19 @@ userSaveFileRouter.get("/:id", async (req, res) => {
 
 userSaveFileRouter.post("/:id", async (req, res) => {
   const body = req.body
+  const puzzlesId = req.params.id
+  const userId = req.user.id
+  
   const formInput = cleanUserInput(body)
-  console.log('hello')
-  try {
-    const userSaveFileId = req.params.id
-    //const saveFile = await UserSaveFile.query().findById(userSaveFileId)
-    const newSave = await UserSaveFile.query().insertAndFetch(formInput)
+  let serializedformInput = JSON.stringify(formInput);
 
+  let userSave = {}
+  userSave.savedPuzzle = serializedformInput
+  userSave.userId = userId
+  userSave.puzzlesId = puzzlesId
+
+  try {
+    const newSave = await UserSaveFile.query().insertAndFetch(userSave)
     return res.status(200).json({ userSaveFile: newSave })
   } catch(error) {
     return res.status(500).json({ error })

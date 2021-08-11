@@ -15,6 +15,9 @@ const PuzzlePage = (props) => {
         <li><a href="/puzzle/7">Hard Puzzle!</a></li>
         <li><a href="/puzzle/8">Another Hard Puzzle!</a></li>
         <li><a href="/puzzle/9">The last Hard Puzzle!</a></li>
+        <li><a href="/randomPuzzle/easy">Randomly generated Easy Puzzle!</a></li>
+        <li><a href="/randomPuzzle/medium">Randomly generated Medium Puzzle!</a></li>
+        <li><a href="/randomPuzzle/hard">Randomly generated Hard Puzzle!</a></li>
       </ul>
     </div>
   )
