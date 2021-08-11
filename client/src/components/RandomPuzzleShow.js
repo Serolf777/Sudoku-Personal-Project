@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import ErrorList from "./ErrorList.js"
 import translateServerErrors from "../services/translateServerErrors.js"
-import BoxTile from "./BoxTile"
+import BoxTile from "./BoxTile.js"
 
-const PuzzleShow = (props) => {
+const RandomPuzzleShow = (props) => {
   const [puzzle, setPuzzle] = useState([])
 
   const [userSaveFile, setUserSaveFile] = useState({
@@ -21,11 +21,11 @@ const PuzzleShow = (props) => {
 
   const [errors, setErrors] = useState([])
 
-  const { id } = useParams()
+  const { difficulty } = useParams()
 
   const getPuzzle = async () => {
     try {
-      const response = await fetch(`/api/v1/puzzles/${id}`)
+      const response = await fetch(`/api/v1/randomPuzzle/${difficulty}`)
       if(!response.ok){
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
@@ -49,12 +49,11 @@ const PuzzleShow = (props) => {
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
-  console.log(userSaveFile)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const response = await fetch("/api/v1/userSaveFile", {
+      const response = await fetch(`/api/v1/userSaveFile/${id}`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json"
@@ -81,6 +80,17 @@ const PuzzleShow = (props) => {
 
   if(puzzle.boxes !== undefined) {
     for(const box in puzzle.boxes) {
+
+    const handleInputChange = (event) => {
+      const squareNumber = event.currentTarget.name 
+       let squaresInBox = puzzle.boxes[box]
+       squaresInBox[squareNumber] = event.currentTarget.value
+      setUserSaveFile({
+        ...userSaveFile,
+        [box]: squaresInBox
+      })
+    }
+
       allBoxes.push(
         <BoxTile
           box={`${box}`}
@@ -123,4 +133,4 @@ const PuzzleShow = (props) => {
   )
 }
 
-export default PuzzleShow
+export default RandomPuzzleShow
