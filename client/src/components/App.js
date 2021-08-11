@@ -10,6 +10,7 @@ import TopBar from "./layout/TopBar.js";
 import FrontPage from "./FrontPage.js";
 import PuzzlePage from "./PuzzlePage.js";
 import PuzzleShow from "./PuzzleShow.js";
+import RandomPuzzleShow from "./RandomPuzzleShow.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -44,6 +45,10 @@ const App = (props) => {
         <Route exact path="/puzzles">
           <PuzzlePage userId={userId} />
         </Route>
+        <Route exact path="/randomPuzzle/:difficulty">
+          <RandomPuzzleShow userId={userId} />
+        </Route>
+
 
       </Switch>
     </Router>

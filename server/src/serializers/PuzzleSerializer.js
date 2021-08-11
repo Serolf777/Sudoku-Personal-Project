@@ -1,5 +1,3 @@
-import BlockSerializer from "./BlockSerializer.js"
-
 class PuzzleSerializer {
   static async getDetail(puzzle) {
     const allowedAttributes = ["id", "difficulty"]

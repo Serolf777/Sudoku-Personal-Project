@@ -4,28 +4,28 @@ import ErrorList from "./ErrorList.js"
 import translateServerErrors from "../services/translateServerErrors.js"
 import BoxTile from "./BoxTile.js"
 
-const PuzzleShow = (props) => {
-  const [puzzle, setPuzzle] = useState({})
+const RandomPuzzleShow = (props) => {
+  const [puzzle, setPuzzle] = useState([])
 
   const [userSaveFile, setUserSaveFile] = useState({
-    box1: [ ],
-    box2: [ ],
-    box3: [ ],
-    box4: [ ],
-    box5: [ ],
-    box6: [ ],
-    box7: [ ],
-    box8: [ ],
-    box9: [ ]
-})
+      box1: [ ],
+      box2: [ ],
+      box3: [ ],
+      box4: [ ],
+      box5: [ ],
+      box6: [ ],
+      box7: [ ],
+      box8: [ ],
+      box9: [ ]
+  })
 
   const [errors, setErrors] = useState([])
 
-  const { id } = useParams()
+  const { difficulty } = useParams()
 
   const getPuzzle = async () => {
     try {
-      const response = await fetch(`/api/v1/puzzles/${id}`)
+      const response = await fetch(`/api/v1/randomPuzzle/${difficulty}`)
       if(!response.ok){
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
@@ -33,7 +33,6 @@ const PuzzleShow = (props) => {
       }
       const body = await response.json()
       setPuzzle(body.puzzle)
-      // also set this puzzle in the user save puzzle state
 
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -44,7 +43,12 @@ const PuzzleShow = (props) => {
     getPuzzle()
   }, [])
 
-  console.log(userSaveFile)
+  const handleInputChange = (event) => {
+    setUserSaveFile({
+      ...userSaveFile,
+      [event.currentTarget.name]: event.currentTarget.value
+    })
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -77,21 +81,20 @@ const PuzzleShow = (props) => {
   if(puzzle.boxes !== undefined) {
     for(const box in puzzle.boxes) {
 
-       const handleInputChange = (event) => {
-          const squareNumber = event.currentTarget.name 
-           let squaresInBox = puzzle.boxes[box]
-           squaresInBox[squareNumber] = event.currentTarget.value
-          setUserSaveFile({
-            ...userSaveFile,
-            [box]: squaresInBox
-          })
-        }
-      
+    const handleInputChange = (event) => {
+      const squareNumber = event.currentTarget.name 
+       let squaresInBox = puzzle.boxes[box]
+       squaresInBox[squareNumber] = event.currentTarget.value
+      setUserSaveFile({
+        ...userSaveFile,
+        [box]: squaresInBox
+      })
+    }
+
       allBoxes.push(
         <BoxTile
-          box={box}
+          box={`${box}`}
           puzzle={puzzle.boxes[box]} 
-          squaresForBox={box}
           handleInputChange={handleInputChange}
         />
       )
@@ -120,11 +123,9 @@ const PuzzleShow = (props) => {
           {allBoxes[8]}
         </div>
 
-        <input type="button" id="Save Attempt" value="Save Attempt" />
-
         <input className="submit"
-          type="submit"
-          value="Submit Attempt"
+        type="submit"
+        value="Submit Attempt"
         />
       </form>
       
@@ -132,4 +133,4 @@ const PuzzleShow = (props) => {
   )
 }
 
-export default PuzzleShow
+export default RandomPuzzleShow

@@ -11,7 +11,7 @@ const BoxTile = (props) => {
   props.puzzle.map( (square, index) => {
     if(square === 0){
       allSquares.push(
-        <InputBox id={`box${index+1}`} name={`box${index+1}`} handleInputChange={props.handleInputChange}/>
+        <InputBox id={`box${index+1}`} name={`${index}`} handleInputChange={props.handleInputChange}/>
       )
     }
     else{
