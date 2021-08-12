@@ -19,7 +19,7 @@ If you're looking for a challenge, have fun with a randomly generated sudoku puz
 
 # API:
 
-Experimented with outside API: 
+Experimented with outside API for random puzzles: 
 
 ```
 https://sugoku.herokuapp.com/
