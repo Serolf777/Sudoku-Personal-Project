@@ -11,20 +11,24 @@ If you're looking for a challenge, have fun with a randomly generated sudoku puz
 
 
 Technologies:
-*React front-end
-*Node.js backend
-*Go
-*Heroku
+* React front-end
+* Node.js backend
+* Go
+* Heroku
 
 
 API:
 
-Experimented with outside API
+Experimented with outside API: 
 
-*Difficulty:
-  *Easy
-  *Medium
-  *Hard
+```
+https://sugoku.herokuapp.com/
+```
+
+* Difficulties used:
+  * Easy
+  * Medium
+  * Hard
 
 Example:
 
