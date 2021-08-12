@@ -1,4 +1,4 @@
-**Sudoku Personal Project**
+# Sudoku Personal Project
 
 https://sudoku-personal-project.herokuapp.com
 
@@ -10,14 +10,14 @@ This application allows users to complete cool sudoku puzzles, keep track of the
 If you're looking for a challenge, have fun with a randomly generated sudoku puzzle which might or might be possible to complete! Test your sudoku skills!
 
 
-Technologies:
+# Technologies:
 * React front-end
 * Node.js backend
 * Go
 * Heroku
 
 
-API:
+# API:
 
 Experimented with outside API: 
 
