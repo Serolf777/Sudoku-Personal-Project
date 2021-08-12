@@ -36,7 +36,7 @@ Example:
 https://sugoku.herokuapp.com/board?difficulty=easy
 ```
 
-# ToDo
+# To Do
 
 * Allow users to create their own cool sudoku puzzles to share to their friends!
 
