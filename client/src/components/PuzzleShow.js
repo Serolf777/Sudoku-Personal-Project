@@ -23,6 +23,8 @@ const PuzzleShow = (props) => {
 
   const { id } = useParams()
 
+  const checkIfCorrect = []
+
   const getPuzzle = async () => {
     try {
       const response = await fetch(`/api/v1/puzzles/${id}`)
@@ -66,7 +68,7 @@ const PuzzleShow = (props) => {
           const error = new Error(errorMessage)
           throw(error)
         }
-      } 
+      }
     } catch(error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
@@ -100,6 +102,7 @@ const PuzzleShow = (props) => {
 
   return(
     <div className="callout primary">
+      <h3>{checkIfCorrect}</h3>
       <h2>{puzzle.difficulty}</h2>
       <ErrorList errors={errors} />
       <form onSubmit={handleSubmit}>    
@@ -120,7 +123,7 @@ const PuzzleShow = (props) => {
           {allBoxes[8]}
         </div>
 
-        <input type="button" id="Save Attempt" value="Save Attempt" />
+        <input type="submit" id="Save Attempt" value="Save Attempt" />
 
         <input className="submit"
           type="submit"

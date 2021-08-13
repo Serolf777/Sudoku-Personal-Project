@@ -8,7 +8,7 @@
 exports.up = async (knex) => {
   return knex.schema.createTable("userSaveFiles", (table) => {
     table.bigIncrements("id")
-    table.bigInteger("puzzlesId").notNullable().unsigned().index().references("puzzles.id")
+    table.bigInteger("puzzleId").notNullable().unsigned().index().references("puzzles.id")
     table.text("savedPuzzle")
     table.text("puzzlesCompleted")
     table.bigInteger("userId").notNullable().unsigned().index().references("users.id")

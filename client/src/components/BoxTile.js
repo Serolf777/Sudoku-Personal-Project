@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import InputBox from "./InputBox.js"
+import InputSquare from "./InputSquare.js"
 import ErrorList from "./ErrorList.js"
 import translateServerErrors from "../services/translateServerErrors.js"
 
 const BoxTile = (props) => {
-
 
   let allSquares = []
   
   props.puzzle.map( (square, index) => {
     if(square === 0){
       allSquares.push(
-        <InputBox id={`box${index+1}`} name={`${index}`} handleInputChange={props.handleInputChange}/>
+        <InputSquare id={`square${index+1}`} name={`${index}`} handleInputChange={props.handleInputChange}/>
       )
     }
     else{

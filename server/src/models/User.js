@@ -50,7 +50,7 @@ class User extends uniqueFunc(Model) {
     
     return {
       userSaveFile: {
-        relation: Model.HasOneRelation,
+        relation: Model.HasManyRelation,
         modelClass: UserSaveFile,
         join: {
           from: "users.id",
