@@ -22,6 +22,18 @@ const RandomPuzzleShow = (props) => {
   const [solved, setSolved] = useState('')
   const [solvedDiv, setSolvedDiv] = useState('')
 
+  const [edited, setEdited] = useState({
+    box1: [ ],
+    box2: [ ],
+    box3: [ ],
+    box4: [ ],
+    box5: [ ],
+    box6: [ ],
+    box7: [ ],
+    box8: [ ],
+    box9: [ ]
+  })
+
   const [errors, setErrors] = useState([])
 
   const { difficulty } = useParams()
@@ -45,13 +57,6 @@ const RandomPuzzleShow = (props) => {
   useEffect(() => {
     getPuzzle()
   }, [])
-
-  const handleInputChange = (event) => {
-    setUserSaveFile({
-      ...userSaveFile,
-      [event.currentTarget.name]: event.currentTarget.value
-    })
-  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -93,21 +98,26 @@ const RandomPuzzleShow = (props) => {
 
   if(puzzle.boxes !== undefined) {
     for(const box in puzzle.boxes) {
+       const handleInputChange = (event) => {
+          const squareNumber = event.currentTarget.name 
+          let squaresInBox = puzzle.boxes[box]
+          squaresInBox[squareNumber] = event.currentTarget.value
+          setUserSaveFile({
+            ...userSaveFile,
+            [box]: squaresInBox
+          })
 
-    const handleInputChange = (event) => {
-      const squareNumber = event.currentTarget.name 
-      let squaresInBox = puzzle.boxes[box]
-      squaresInBox[squareNumber] = event.currentTarget.value
-      setUserSaveFile({
-        ...userSaveFile,
-        [box]: squaresInBox
-      })
-    }
-
+          setEdited({
+            ...edited,
+            [box]: [...edited[box],parseInt(squareNumber)]
+          })
+        }
+      
       allBoxes.push(
         <BoxTile
-          box={`${box}`}
-          puzzle={puzzle.boxes[box]} 
+          box={box}
+          edited={edited}
+          puzzle={puzzle.boxes[box]}
           handleInputChange={handleInputChange}
         />
       )
