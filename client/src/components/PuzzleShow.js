@@ -163,7 +163,6 @@ const PuzzleShow = (props) => {
           value="Submit Attempt"
         />
       </form>
-      
     </div>
   )
 }
