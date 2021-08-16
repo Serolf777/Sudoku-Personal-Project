@@ -15,6 +15,11 @@ const PuzzlePage = (props) => {
         <li><a href="/puzzle/7">Hard Puzzle!</a></li>
         <li><a href="/puzzle/8">Another Hard Puzzle!</a></li>
         <li><a href="/puzzle/9">The last Hard Puzzle!</a></li>
+      </ul>
+
+      <h1>Here are some randomly generated puzzles using an outside API Sugoku!*</h1> 
+      <h7>*These randomly generated puzzles might not all be possible</h7>
+      <ul>
         <li><a href="/randomPuzzle/easy">Randomly generated Easy Puzzle!</a></li>
         <li><a href="/randomPuzzle/medium">Randomly generated Medium Puzzle!</a></li>
         <li><a href="/randomPuzzle/hard">Randomly generated Hard Puzzle!</a></li>

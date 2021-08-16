@@ -19,6 +19,9 @@ const RandomPuzzleShow = (props) => {
       box9: [ ]
   })
 
+  const [solved, setSolved] = useState('')
+  const [solvedDiv, setSolvedDiv] = useState('')
+
   const [errors, setErrors] = useState([])
 
   const { difficulty } = useParams()
@@ -52,6 +55,7 @@ const RandomPuzzleShow = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+
     try {
       const response = await fetch(`/api/v1/userSaveFile/${id}`, {
         method: "POST",
@@ -70,7 +74,16 @@ const RandomPuzzleShow = (props) => {
           const error = new Error(errorMessage)
           throw(error)
         }
-      } 
+      } else {
+        const userSaveFileData = await response.json()
+        if(userSaveFileData.userSaveFile){
+          setSolved("It's RIGHT! You're so smart.")
+          setSolvedDiv('solved')
+        } else {
+          setSolved("It's WRONG! Try again.")
+          setSolvedDiv('notSolved')
+        }
+      }
     } catch(error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
@@ -83,8 +96,8 @@ const RandomPuzzleShow = (props) => {
 
     const handleInputChange = (event) => {
       const squareNumber = event.currentTarget.name 
-       let squaresInBox = puzzle.boxes[box]
-       squaresInBox[squareNumber] = event.currentTarget.value
+      let squaresInBox = puzzle.boxes[box]
+      squaresInBox[squareNumber] = event.currentTarget.value
       setUserSaveFile({
         ...userSaveFile,
         [box]: squaresInBox
@@ -103,7 +116,14 @@ const RandomPuzzleShow = (props) => {
 
   return(
     <div className="callout primary">
-      <h2>{puzzle.difficulty}</h2>
+      <div className={solvedDiv}>
+        <h3>{solved}</h3>
+      </div>
+
+      <div className="difficulty">
+        <h2>{puzzle.difficulty}</h2>
+      </div>
+      
       <ErrorList errors={errors} />
       <form onSubmit={handleSubmit}>    
 
@@ -123,10 +143,10 @@ const RandomPuzzleShow = (props) => {
           {allBoxes[8]}
         </div>
 
-        <input className="submit"
+        {/* <input className="submit"
         type="submit"
         value="Submit Attempt"
-        />
+        /> */}
       </form>
       
     </div>

@@ -1,10 +1,10 @@
 import React from "react"
 
-const InputBox = (props) => {
+const InputSquare = (props) => {
 
   return(
     <input 
-      className="sudoku_box cell small-4"
+      className={`sudoku-box cell small-4 square${props.name}`}
       type="text"
       maxLength="1"
       id={props.id}
@@ -14,4 +14,4 @@ const InputBox = (props) => {
   )
 }
 
-export default InputBox
+export default InputSquare

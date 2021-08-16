@@ -19,6 +19,24 @@ const PuzzleShow = (props) => {
     box9: [ ]
 })
 
+  const [solved, setSolved] = useState('')
+  const [solvedDiv, setSolvedDiv] = useState('')
+
+  const [editedSquare, setEditedSquare] = useState('')
+  const [editedBox, setEditedBox] = useState('')
+
+  const [edited, setEdited] = useState({
+    box1: [ ],
+    box2: [ ],
+    box3: [ ],
+    box4: [ ],
+    box5: [ ],
+    box6: [ ],
+    box7: [ ],
+    box8: [ ],
+    box9: [ ]
+  })
+
   const [errors, setErrors] = useState([])
 
   const { id } = useParams()
@@ -33,7 +51,6 @@ const PuzzleShow = (props) => {
       }
       const body = await response.json()
       setPuzzle(body.puzzle)
-      // also set this puzzle in the user save puzzle state
 
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
@@ -44,10 +61,9 @@ const PuzzleShow = (props) => {
     getPuzzle()
   }, [])
 
-  console.log(userSaveFile)
-
   const handleSubmit = async (event) => {
     event.preventDefault()
+
     try {
       const response = await fetch(`/api/v1/userSaveFile/${id}`, {
         method: "POST",
@@ -66,7 +82,16 @@ const PuzzleShow = (props) => {
           const error = new Error(errorMessage)
           throw(error)
         }
-      } 
+      } else {
+        const userSaveFileData = await response.json()
+        if(userSaveFileData.userSaveFile){
+          setSolved("It's RIGHT! You're so smart.")
+          setSolvedDiv('solved')
+        } else {
+          setSolved("It's WRONG! Try again.")
+          setSolvedDiv('notSolved')
+        }
+      }
     } catch(error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
@@ -76,22 +101,28 @@ const PuzzleShow = (props) => {
 
   if(puzzle.boxes !== undefined) {
     for(const box in puzzle.boxes) {
-
        const handleInputChange = (event) => {
           const squareNumber = event.currentTarget.name 
-           let squaresInBox = puzzle.boxes[box]
-           squaresInBox[squareNumber] = event.currentTarget.value
+          let squaresInBox = puzzle.boxes[box]
+          squaresInBox[squareNumber] = event.currentTarget.value
           setUserSaveFile({
             ...userSaveFile,
             [box]: squaresInBox
+          })
+          setEditedSquare( parseInt(squareNumber) )
+          setEditedBox(box)
+
+          setEdited({
+            ...edited,
+            [box]: [...edited[box],parseInt(squareNumber)]
           })
         }
       
       allBoxes.push(
         <BoxTile
           box={box}
-          puzzle={puzzle.boxes[box]} 
-          squaresForBox={box}
+          edited={edited}
+          puzzle={puzzle.boxes[box]}
           handleInputChange={handleInputChange}
         />
       )
@@ -100,7 +131,14 @@ const PuzzleShow = (props) => {
 
   return(
     <div className="callout primary">
-      <h2>{puzzle.difficulty}</h2>
+      <div className={solvedDiv}>
+        <h3>{solved}</h3>
+      </div>
+
+      <div className="difficulty">
+        <h2>{puzzle.difficulty}</h2>
+      </div>
+
       <ErrorList errors={errors} />
       <form onSubmit={handleSubmit}>    
 
@@ -119,8 +157,6 @@ const PuzzleShow = (props) => {
           {allBoxes[7]}
           {allBoxes[8]}
         </div>
-
-        <input type="button" id="Save Attempt" value="Save Attempt" />
 
         <input className="submit"
           type="submit"

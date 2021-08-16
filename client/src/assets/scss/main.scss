@@ -13,11 +13,104 @@
   tab-size: 4;
 }
 
-.sudoku_box {
+.sudoku-box {
   display: table-cell;
   width: 25px;
 }
 
 .submit{
   display:block;
+}
+
+.difficulty{
+  text-align: center;
+  color: #00008B;
+}
+.difficulty h2{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 55px;
+}
+
+.box{
+  border: 2px solid #2F4F4F;
+}
+
+.boxName, .numbers{
+  text-align: center;
+}
+
+.solved{
+  text-align: center;
+  border: 5px solid #00FA9A;
+}
+
+.solved h3{
+  font-size: 50px;
+  color: green;
+  font-weight: bold;
+  font-style: italic; 
+}
+
+.notSolved{
+  font-size: 20px;
+  text-align: center;
+  border: 5px solid red;
+}
+
+.notSolved h3{
+  font-size: 50px;
+  color: #800000;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.square1 {
+  border-right:  1px solid black; 
+  border-bottom: 1px solid black;
+}
+
+.square2 {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right:  1px solid black; 
+}
+
+.square3 {
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.square4 {
+  border-right:  1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.square5 {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right:  1px solid black; 
+  border-bottom: 1px solid black;
+}
+
+.square6 {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.square7 {
+  border-top: 1px solid black;
+  border-right:  1px solid black;
+}
+
+.square8 {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right:  1px solid black;
+}
+
+.square9 {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
 }
