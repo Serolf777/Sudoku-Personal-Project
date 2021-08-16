@@ -5,7 +5,7 @@ import objection from "objection"
 const { ValidationError } = objection
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import checkSubmission from "../../../services/checkSubmission.js"
-import cleanUserSubmission from "../../../services/cleanUserSubmission.js"
+import cleanUserSubmission from "../../../services/validatePuzzleSquares.js"
 
 const userSaveFileRouter = new express.Router()
 
@@ -55,7 +55,6 @@ userSaveFileRouter.post("/:id", async (req, res) => {
         else{
           correctlySolved = false
         }
-        console.log(checkPuzzle.isCorrect)
 
       return res.status(200).json({ userSaveFile: correctlySolved })
     } catch(error) {
@@ -71,21 +70,20 @@ userSaveFileRouter.post("/:id", async (req, res) => {
         savedPuzzle: userSave.savedPuzzle
       })
       const checkPuzzle = new checkSubmission(formInput)
-      console.log(checkPuzzle)
 
-      if(checkPuzzle.isCorrect){
+      if(checkPuzzle.checkBox() && checkPuzzle.checkRow()){
           correctlySolved = true
         }
         else{
           correctlySolved = false
         }
-        console.log(checkPuzzle.isCorrect)
 
-      return res.status(200).json({ userSaveFile: correctlySolved })
+      return res.status(200).json({ userSaveFile: correctlySolved  })
     } catch(error) {
       if(error instanceof ValidationError) {
         return res.status(422).json({errors: error.data})
       }
+      console.log(error)
       return res.status(500).json({ error })
     }
   }

@@ -30,7 +30,6 @@ const FrontPage = (props) => {
       {checkLogin}
     </div>
   )
-
 }
 
 export default FrontPage

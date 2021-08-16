@@ -2,21 +2,9 @@ import React from "react"
 
 const InputSquare = (props) => {
 
-  let readOnly = false
-  const onClick = async (event) => {
-    event.preventDefault()
-    if(readOnly === false){
-      readOnly= true
-    }
-    else{
-      readOnly=false
-    }
-    console.log(readOnly)
-  }
-
   return(
     <input 
-      className="sudoku_box cell small-4"
+      className={`sudoku-box cell small-4 square${props.name}`}
       type="text"
       maxLength="1"
       id={props.id}
