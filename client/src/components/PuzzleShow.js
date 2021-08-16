@@ -22,9 +22,6 @@ const PuzzleShow = (props) => {
   const [solved, setSolved] = useState('')
   const [solvedDiv, setSolvedDiv] = useState('')
 
-  const [editedSquare, setEditedSquare] = useState('')
-  const [editedBox, setEditedBox] = useState('')
-
   const [edited, setEdited] = useState({
     box1: [ ],
     box2: [ ],
@@ -109,8 +106,6 @@ const PuzzleShow = (props) => {
             ...userSaveFile,
             [box]: squaresInBox
           })
-          setEditedSquare( parseInt(squareNumber) )
-          setEditedBox(box)
 
           setEdited({
             ...edited,
@@ -163,7 +158,6 @@ const PuzzleShow = (props) => {
           value="Submit Attempt"
         />
       </form>
-      
     </div>
   )
 }
