@@ -4,31 +4,31 @@ class PuzzleSeeder {
   static async seed() {
     const puzzlesData = [
       {
-        difficulty: "easy-1"
+        difficulty: "Easy 1"
       },
       {
-        difficulty: "easy-2"
+        difficulty: "Easy 2"
       },
       {
-        difficulty: "easy-3"
+        difficulty: "Easy 3"
       },
       {
-        difficulty: "medium-1"
+        difficulty: "Medium 1"
       },
       {
-        difficulty: "medium-2"
+        difficulty: "Medium 2"
       },
       {
-        difficulty: "medium-3"
+        difficulty: "Medium 3"
       },
       {
-        difficulty: "hard-1"
+        difficulty: "Hard 1"
       },
       {
-        difficulty: "hard-2"
+        difficulty: "Hard 2"
       },
       {
-        difficulty: "hard-3"
+        difficulty: "Hard 3"
       }
     ]
 
