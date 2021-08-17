@@ -13,21 +13,28 @@ const FrontPage = (props) => {
     )
   } else {
     checkLogin = (
-      <div>
+      <div className="center">
         <p>
           Now let's get you to the puzzles!
         </p>
-        <Link to="/puzzles">Click here!</Link>
+        <a href="/puzzles"className="buttonStyled">
+          View Puzzles
+        </a>
       </div>
     )
   }
 
   return(
-    <div className="callout primary">
+    <div className="callout primary center">
       <h1>
         Welcome to the wonderful world of Sudoku puzzles!
       </h1>
       {checkLogin}
+      <img 
+        className="frontPageImage"
+        alt="picture of sudoku puzzle"
+        src="https://i.imgur.com/1rulCXS.png">
+      </img>
     </div>
   )
 }
