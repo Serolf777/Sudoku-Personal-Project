@@ -26,7 +26,7 @@ const BoxTile = (props) => {
     } else{
       allSquares.push(
       <div className={`cell small-4 square${index+1}`}>
-        <h3>{props.puzzle[index]}</h3>
+        <h3 className="square">{props.puzzle[index]}</h3>
       </div>
       )
     }

@@ -15,7 +15,8 @@
 
 .sudoku-box {
   display: table-cell;
-  width: 25px;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 30px;
 }
 
 .submit{
@@ -35,7 +36,7 @@
   border: 2px solid #2F4F4F;
 }
 
-.boxName, .numbers, .center{
+.sudoku-box, .boxName, .numbers, .center{
   text-align: center;
 }
 
@@ -62,6 +63,14 @@
   color: #800000;
   font-weight: bold;
   font-style: italic;
+}
+
+.square1, .square2, .square3,
+.square4, .square5, .square6,
+.square7, .square8, .square9 {
+  height: 50px;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .square1 {

@@ -20,9 +20,9 @@ const PuzzlePage = (props) => {
       <h1>Randomly Generated Puzzles from Sugoku!</h1> 
       <h5>Note: Due to the inconsistency of the API, know that some of these puzzles might not actually be completeable.</h5>
       <ul>
-        <li><a href="/randomPuzzle/easy">Randomly generated Easy Puzzle!</a></li>
-        <li><a href="/randomPuzzle/medium">Randomly generated Medium Puzzle!</a></li>
-        <li><a href="/randomPuzzle/hard">Randomly generated Hard Puzzle!</a></li>
+        <li><a href="/randomPuzzle/easy">Randomly Generated Easy Puzzle!</a></li>
+        <li><a href="/randomPuzzle/medium">Randomly Generated Medium Puzzle!</a></li>
+        <li><a href="/randomPuzzle/hard">Randomly Generated Hard Puzzle!</a></li>
       </ul>
     </div>
   )
