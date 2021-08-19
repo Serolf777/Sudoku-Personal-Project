@@ -4,7 +4,7 @@ const InputSquare = (props) => {
 
   return(
     <input 
-      className={`sudoku-box cell small-4 square${props.name}`}
+      className={`sudoku-box cell small-4 ${props.id}`}
       type="text"
       maxLength="1"
       id={props.id}
