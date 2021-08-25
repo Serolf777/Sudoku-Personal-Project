@@ -21,6 +21,8 @@ const PuzzleShow = (props) => {
 
   const [solved, setSolved] = useState('')
   const [solvedDiv, setSolvedDiv] = useState('')
+  const [loadedSave, setloadedSave] = useState('')
+  const [loadedSaveDiv, setLoadedSaveDiv] = useState('')
 
   const [edited, setEdited] = useState({
     box1: [ ],
@@ -57,6 +59,84 @@ const PuzzleShow = (props) => {
   useEffect(() => {
     getPuzzle()
   }, [])
+
+  async function useLoadedSave(userPuzzleSave) {
+
+    for(const box in userPuzzleSave) {
+      for(let x=0; userPuzzleSave[box].length > x; x++){
+        if( !(userPuzzleSave[box][x] === 0) ){
+          let desiredBox = document.getElementsByClassName(box)
+
+          if(x < 3){
+            console.log(desiredBox[0].children[0])
+            if(x===0){
+              desiredBox[0].children[0].children[0].placeholder = userPuzzleSave[box][x]
+            } else if(x===1) {
+              desiredBox[0].children[0].children[1].placeholder = userPuzzleSave[box][x]
+            } else {
+              desiredBox[0].children[0].children[2].placeholder = userPuzzleSave[box][x]
+            }
+          } else if(x < 6){
+            console.log(desiredBox[0].children[1])
+            if(x===3){
+              desiredBox[0].children[1].children[0].placeholder = userPuzzleSave[box][x]
+            } else if(x===4) {
+              desiredBox[0].children[1].children[1].placeholder = userPuzzleSave[box][x]
+            } else {
+              desiredBox[0].children[1].children[2].placeholder = userPuzzleSave[box][x]
+            }
+          } else {
+            console.log(desiredBox[0].children[2])
+            if(x===6){
+              desiredBox[0].children[2].children[0].placeholder = userPuzzleSave[box][x]
+            } else if(x===7) {
+              desiredBox[0].children[2].children[1].placeholder = userPuzzleSave[box][x]
+            } else {
+              desiredBox[0].children[2].children[2].placeholder = userPuzzleSave[box][x]
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const handleLoadSave = async (event) => {
+    event.preventDefault()
+    try {
+      const response = await fetch(`/api/v1/userSaveFile/${id}`, {
+        method: "GET",
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+      })
+      if(!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          const newErrors = translateServerErrors(body.errors)
+          return setErrors(newErrors)
+        } else {
+          const errorMessage = `${response.status}: (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      } else {
+        const userSaveFileData = await response.json()
+        const userPuzzleSave = JSON.parse(userSaveFileData.userSaveFile.savedPuzzle)
+        if(userPuzzleSave){
+          setloadedSave("Your save file was loaded.")
+          setLoadedSaveDiv('exists')
+          useLoadedSave(userPuzzleSave)
+        } else {
+          setloadedSave("There was an unknown issue with saved data.")
+          setLoadedSaveDiv('doesNotExist')
+        }
+      }
+    } catch(error) {
+      console.error(`Error in Fetch: ${error.message}`)
+      setloadedSave("There was no previous save file found.")
+      setLoadedSaveDiv('doesNotExist')
+    }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -126,6 +206,10 @@ const PuzzleShow = (props) => {
 
   return(
     <div className="callout primary">
+      <div className={loadedSaveDiv}>
+        <h3>{loadedSave}</h3>
+      </div>
+
       <div className={solvedDiv}>
         <h3>{solved}</h3>
       </div>
@@ -135,8 +219,7 @@ const PuzzleShow = (props) => {
       </div>
 
       <ErrorList errors={errors} />
-      <form onSubmit={handleSubmit}>    
-
+      <form>
         <div className="grid-x">
           {allBoxes[0]}
           {allBoxes[1]}
@@ -153,8 +236,15 @@ const PuzzleShow = (props) => {
           {allBoxes[8]}
         </div>
 
+        <input className="load-save"
+          type="submit"
+          onClick={handleLoadSave}
+          value="Load Save"
+        />
+
         <input className="submit"
           type="submit"
+          onClick={handleSubmit}
           value="Submit Attempt"
         />
       </form>

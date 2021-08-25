@@ -10,6 +10,7 @@ const InputSquare = (props) => {
       id={props.id}
       name={props.name}
       onChange={props.handleInputChange}
+      placeholder=""
     />
   )
 }

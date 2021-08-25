@@ -40,7 +40,7 @@
   text-align: center;
 }
 
-.solved{
+.solved, .exists{
   text-align: center;
   border: 5px solid #00FA9A;
 }
@@ -52,7 +52,7 @@
   font-style: italic; 
 }
 
-.notSolved{
+.notSolved, .doesNotExist{
   font-size: 20px;
   text-align: center;
   border: 5px solid red;
@@ -160,5 +160,6 @@ input[type=submit] {
   color: #fff;
   cursor:pointer;
   -webkit-border-radius: 5px;
-  border-radius: 5px; 
+  border-radius: 5px;
+  display: inline-block;
 }

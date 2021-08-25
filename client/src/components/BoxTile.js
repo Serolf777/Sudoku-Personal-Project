@@ -36,7 +36,7 @@ const BoxTile = (props) => {
   })
 
   return(
-    <div className='cell small-4 box'>
+    <div className={`cell small-4 box ${props.box}`}>
 
       <div className="grid-x numbers">
           {allSquares[0]}
