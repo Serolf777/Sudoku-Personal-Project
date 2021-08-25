@@ -11,12 +11,30 @@ const userSaveFileRouter = new express.Router()
 
 userSaveFileRouter.get("/:id", async (req, res) => {
   const userId = req.params.id
-  try {
-    const saveFile = await UserSaveFile.query().findById(userId)
+  const puzzleId = req.params.id
 
-    return res.status(200).json({ userSaveFile: saveFile })
+  try {
+    const user = await User.query().findById(userId)
+    const userSaveFile = await user.$relatedQuery("userSaveFile")
+
+    let matchedSave = false
+    userSaveFile.forEach(save => {
+    if(save.puzzleId === puzzleId){
+      matchedSave = save.id
+    }
+  })
+
+  if(matchedSave === false){
+    let userSave = "Unable to find"
+    return res.status(200).json({ userSaveFile: userSave })
+  } else {
+    const userSave = await UserSaveFile.query().findById(matchedSave)
+    return res.status(200).json({ userSaveFile: userSave })
+  }
+
   } catch(error) {
-    return res.status(500).json({ error })
+    let userSave = "Unable to find"
+    return res.status(500).json({ userSaveFile: userSave })
   }
 })
 
