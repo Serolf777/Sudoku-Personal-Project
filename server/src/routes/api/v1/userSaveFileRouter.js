@@ -10,7 +10,7 @@ import cleanUserSubmission from "../../../services/validatePuzzleSquares.js"
 const userSaveFileRouter = new express.Router()
 
 userSaveFileRouter.get("/:id", async (req, res) => {
-  const userId = req.params.id
+  const userId = req.user.id
   const puzzleId = req.params.id
 
   try {
