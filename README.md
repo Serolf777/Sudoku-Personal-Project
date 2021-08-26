@@ -39,5 +39,6 @@ https://sugoku.herokuapp.com/board?difficulty=easy
 # To Do
 
 * Allow users to create their own cool sudoku puzzles to share to their friends!
+* Allow users to save random puzzles that were generated so they can try them later (assuming the puzzle is valid)
 
 
