@@ -20,9 +20,9 @@ const PuzzleShow = (props) => {
 })
 
   const [solved, setSolved] = useState('')
-  const [solvedDiv, setSolvedDiv] = useState('')
-  const [loadedSave, setloadedSave] = useState('')
-  const [loadedSaveDiv, setLoadedSaveDiv] = useState('')
+  const [solvedDiv, setSolvedDiv] = useState('hidden')
+  const [loadedSave, setLoadedSave] = useState('')
+  const [loadedSaveDiv, setLoadedSaveDiv] = useState('hidden')
 
   const [edited, setEdited] = useState({
     box1: [ ],
@@ -98,6 +98,7 @@ const PuzzleShow = (props) => {
         }
       }
     }
+    setSolvedDiv('hidden')
   }
 
   const handleLoadSave = async (event) => {
@@ -123,18 +124,18 @@ const PuzzleShow = (props) => {
         const userSaveFileData = await response.json()
         const userPuzzleSave = JSON.parse(userSaveFileData.userSaveFile.savedPuzzle)
         if(userPuzzleSave){
-          setloadedSave("Your save file was loaded.")
-          setLoadedSaveDiv('exists')
+          setLoadedSave("Your save file was loaded.")
+          setLoadedSaveDiv('loaded')
           useLoadedSave(userPuzzleSave)
         } else {
-          setloadedSave("There was an unknown issue with saved data.")
-          setLoadedSaveDiv('doesNotExist')
+          setLoadedSave("There was an unknown issue with saved data.")
+          setLoadedSaveDiv('notLoaded')
         }
       }
     } catch(error) {
       console.error(`Error in Fetch: ${error.message}`)
-      setloadedSave("There was no previous save file found.")
-      setLoadedSaveDiv('doesNotExist')
+      setLoadedSave("There was no previous save file found.")
+      setLoadedSaveDiv('notLoaded')
     }
   }
 
@@ -164,9 +165,11 @@ const PuzzleShow = (props) => {
         if(userSaveFileData.userSaveFile){
           setSolved("It's RIGHT! You're so smart.")
           setSolvedDiv('solved')
+          setLoadedSaveDiv('hidden')
         } else {
           setSolved("It's WRONG! Try again.")
           setSolvedDiv('notSolved')
+          setLoadedSaveDiv('hidden')
         }
       }
     } catch(error) {
@@ -206,7 +209,7 @@ const PuzzleShow = (props) => {
 
   return(
     <div className="callout primary">
-      <div className={loadedSaveDiv}>
+      <div className={`${loadedSaveDiv} buttonStyled`}>
         <h3>{loadedSave}</h3>
       </div>
 
