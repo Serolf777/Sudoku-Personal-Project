@@ -5,7 +5,7 @@ https://sudoku-personal-project.herokuapp.com
 
 This is the wonderful sudoku application. 
 
-This application allows users to complete cool sudoku puzzles and keep track of the sudoku puzzles they've completed.
+This application allows users to complete cool sudoku puzzles, load saves of previous attempts, and keep track of the sudoku puzzles they've completed.
 
 If you're looking for a challenge, have fun with a randomly generated sudoku puzzle which might or might be possible to complete! Test your sudoku skills!
 
