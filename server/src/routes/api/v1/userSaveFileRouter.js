@@ -5,7 +5,7 @@ import objection from "objection"
 const { ValidationError } = objection
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import checkSubmission from "../../../services/checkSubmission.js"
-import cleanUserSubmission from "../../../services/validatePuzzleSquares.js"
+import validatePuzzleSquares from "../../../services/validatePuzzleSquares.js"
 
 const userSaveFileRouter = new express.Router()
 
@@ -44,7 +44,7 @@ userSaveFileRouter.post("/:id", async (req, res) => {
   const userId = req.user.id
   let correctlySolved = false
   
-  const formInput = cleanUserSubmission(body)
+  const formInput = validatePuzzleSquares(body)
   let serializedformInput = JSON.stringify(formInput);
 
   let userSave = {}

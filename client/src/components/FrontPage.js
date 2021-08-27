@@ -26,7 +26,7 @@ const FrontPage = (props) => {
 
   return(
     <div className="callout primary center">
-      <h1>
+      <h1 className="headers">
         Welcome to the wonderful world of Sudoku puzzles!
       </h1>
       {checkLogin}
