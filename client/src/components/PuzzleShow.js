@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import ErrorList from "./ErrorList.js"
 import translateServerErrors from "../services/translateServerErrors.js"
 import BoxTile from "./BoxTile.js"
+import useLoadedSave from "../services/useLoadedSave.js";
 
 const PuzzleShow = (props) => {
   const [puzzle, setPuzzle] = useState({})
@@ -60,47 +61,6 @@ const PuzzleShow = (props) => {
     getPuzzle()
   }, [])
 
-  async function useLoadedSave(userPuzzleSave) {
-
-    for(const box in userPuzzleSave) {
-      for(let x=0; userPuzzleSave[box].length > x; x++){
-        if( !(userPuzzleSave[box][x] === 0) ){
-          let desiredBox = document.getElementsByClassName(box)
-
-          if(x < 3){
-            console.log(desiredBox[0].children[0])
-            if(x===0){
-              desiredBox[0].children[0].children[0].placeholder = userPuzzleSave[box][x]
-            } else if(x===1) {
-              desiredBox[0].children[0].children[1].placeholder = userPuzzleSave[box][x]
-            } else {
-              desiredBox[0].children[0].children[2].placeholder = userPuzzleSave[box][x]
-            }
-          } else if(x < 6){
-            console.log(desiredBox[0].children[1])
-            if(x===3){
-              desiredBox[0].children[1].children[0].placeholder = userPuzzleSave[box][x]
-            } else if(x===4) {
-              desiredBox[0].children[1].children[1].placeholder = userPuzzleSave[box][x]
-            } else {
-              desiredBox[0].children[1].children[2].placeholder = userPuzzleSave[box][x]
-            }
-          } else {
-            console.log(desiredBox[0].children[2])
-            if(x===6){
-              desiredBox[0].children[2].children[0].placeholder = userPuzzleSave[box][x]
-            } else if(x===7) {
-              desiredBox[0].children[2].children[1].placeholder = userPuzzleSave[box][x]
-            } else {
-              desiredBox[0].children[2].children[2].placeholder = userPuzzleSave[box][x]
-            }
-          }
-        }
-      }
-    }
-    setSolvedDiv('hidden')
-  }
-
   const handleLoadSave = async (event) => {
     event.preventDefault()
     try {
@@ -127,6 +87,7 @@ const PuzzleShow = (props) => {
           setLoadedSave("Your save file was loaded.")
           setLoadedSaveDiv('loaded')
           useLoadedSave(userPuzzleSave)
+          setSolvedDiv('hidden')
         } else {
           setLoadedSave("There was an unknown issue with saved data.")
           setLoadedSaveDiv('notLoaded')
