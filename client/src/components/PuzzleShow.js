@@ -185,19 +185,7 @@ const PuzzleShow = (props) => {
       <ErrorList errors={errors} />
       <form>
         <div className="grid-x">
-          {allBoxes[0]}
-          {allBoxes[1]}
-          {allBoxes[2]}
-        </div>
-        <div className="grid-x">
-          {allBoxes[3]}
-          {allBoxes[4]}
-          {allBoxes[5]}
-        </div>
-        <div className="grid-x">
-          {allBoxes[6]}
-          {allBoxes[7]}
-          {allBoxes[8]}
+          {allBoxes}
         </div>
 
         <input className="load-save"

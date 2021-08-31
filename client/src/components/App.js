@@ -11,6 +11,7 @@ import FrontPage from "./FrontPage.js";
 import PuzzlePage from "./PuzzlePage.js";
 import PuzzleShow from "./PuzzleShow.js";
 import RandomPuzzleShow from "./RandomPuzzleShow.js";
+import CreateNewPuzzle from "./CreateNewPuzzle.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -47,6 +48,9 @@ const App = (props) => {
         </Route>
         <Route exact path="/randomPuzzle/:difficulty">
           <RandomPuzzleShow userId={userId} />
+        </Route>
+        <Route exact path="/createnewpuzzle">
+          <CreateNewPuzzle userId={userId} />
         </Route>
 
 
