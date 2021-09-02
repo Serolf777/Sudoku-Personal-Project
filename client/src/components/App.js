@@ -49,7 +49,7 @@ const App = (props) => {
         <Route exact path="/randomPuzzle/:difficulty">
           <RandomPuzzleShow userId={userId} />
         </Route>
-        <Route exact path="/createnewpuzzle">
+        <Route exact path="/createNewPuzzle">
           <CreateNewPuzzle userId={userId} />
         </Route>
 

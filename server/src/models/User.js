@@ -46,7 +46,7 @@ class User extends uniqueFunc(Model) {
   }
 
   static get relationMappings() {
-    const { UserSaveFile } = require("./index.js")
+    const { UserSaveFile, Puzzle } = require("./index.js")
     
     return {
       userSaveFile: {
@@ -56,7 +56,15 @@ class User extends uniqueFunc(Model) {
           from: "users.id",
           to: "userSaveFiles.userId"
         }
-      }
+      },
+      puzzle: {
+        relation: Model.HasManyRelation,
+        modelClass: Puzzle,
+        join: {
+          from: "users.id",
+          to: "puzzles.userId"
+        }
+      },
     }
   }
   

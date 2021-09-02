@@ -84,17 +84,18 @@ userSaveFileRouter.post("/:id", async (req, res) => {
   }
   else{
     try {
-      const updateSave = await UserSaveFile.query().updateAndFetchById(matchedSave, {
-        savedPuzzle: userSave.savedPuzzle
-      })
       const checkPuzzle = new checkSubmission(formInput)
-
       if(checkPuzzle.checkBox() && checkPuzzle.checkRow()){
           correctlySolved = true
         }
         else{
           correctlySolved = false
         }
+        
+      const updateSave = await UserSaveFile.query().updateAndFetchById(matchedSave, {
+        savedPuzzle: userSave.savedPuzzle,
+        puzzlesCompleted: correctlySolved
+      })
 
       return res.status(200).json({ userSaveFile: correctlySolved  })
     } catch(error) {
