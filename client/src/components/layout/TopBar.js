@@ -29,7 +29,7 @@ const TopBar = ({ user }) => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/createnewpuzzle">Create New Puzzle!</Link>
+            <Link to="/createNewPuzzle">Create New Puzzle!</Link>
           </li>
 
         </ul>

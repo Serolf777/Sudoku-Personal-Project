@@ -17,7 +17,7 @@ class Puzzle extends Model {
 
   static get relationMappings() {
     const {
-        Boxes, UserSaveFile
+        Boxes, UserSaveFile, User
       } = require("./index.js")
     
     return {
@@ -35,6 +35,14 @@ class Puzzle extends Model {
         join: {
           from: "puzzles.id",
           to: "userSaveFiles.puzzleId"
+        }
+      },
+      user: {
+        relation: Model.HasOneRelation,
+        modelClass: User,
+        join: {
+          from: "puzzles.id",
+          to: "users.puzzleId"
         }
       }
     }

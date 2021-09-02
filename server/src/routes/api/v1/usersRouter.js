@@ -1,7 +1,7 @@
 import express from "express";
 import objection from "objection"
 import passport from "passport";
-import { User } from "../../../models/index.js";
+import { User, UserSaveFile } from "../../../models/index.js";
 
 const { ValidationError } = objection
 
