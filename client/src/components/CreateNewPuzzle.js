@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BoxTile from "./BoxTile.js"
 import ErrorList from "./ErrorList.js"
 import translateServerErrors from "../services/translateServerErrors.js"
+import { Redirect } from "react-router";
 
 const CreateNewPuzzle = (props) => {
 
@@ -28,6 +29,9 @@ const [edited, setEdited] = useState({
   box8: [ ],
   box9: [ ]
 })
+
+const [shouldRedirect, setShouldRedirect] = useState(false)
+const [puzzleId, setPuzzleId] = useState()
 
 const [errors, setErrors] = useState([])
 
@@ -86,12 +90,19 @@ for(const box in userCreatedPuzzle) {
           throw(error)
         }
       } else {
-        const userSaveFileData = await response.json()
+        const userPuzzle = await response.json();
+        setPuzzleId(userPuzzle.userCreatedPuzzle.id)
+        setShouldRedirect(true)
       }
     } catch(error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
   }
+
+  if(shouldRedirect) {
+    return <Redirect push to={`/puzzle/${puzzleId}`} />
+  }
+
 
   return(
       <div className="callout primary">
