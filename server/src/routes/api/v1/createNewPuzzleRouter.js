@@ -2,7 +2,7 @@ import express from "express";
 import objection from "objection"
 const { ValidationError } = objection
 import passport from "passport";
-import { User, UserSaveFile } from "../../../models/index.js";
+import { User, UserSaveFile, Puzzle, Boxes } from "../../../models/index.js";
 import validatePuzzleSquares from "../../../services/validatePuzzleSquares.js"
 
 const createNewPuzzleRouter = new express.Router();
@@ -18,22 +18,19 @@ createNewPuzzleRouter.post("/:id", async (req, res) => {
 
   try {
     let serializedformInput = JSON.stringify(formInput);
+    let puzzle = {}
+    puzzle.userId = userId
+    puzzle.difficulty = "User Made"
 
-    if(userSaveFile.createdPuzzles === undefined){
-      userSaveFile.createdPuzzles = []
-      userSaveFile.createdPuzzles.push(serializedformInput)
-      console.log(userSaveFile.puzzleId)
-    } else {
-      userSaveFile.createdPuzzles.push(serializedformInput)
-    }
+    const newPuzzle = await Puzzle.query().insertAndFetch(puzzle)
 
-    console.log(userSaveFile)
+    let boxes = {}
+    boxes.allBoxes = serializedformInput
+    boxes.puzzleId = parseInt(newPuzzle.id)
 
-    const newSave = await UserSaveFile.query().insertAndFetch(userSaveFile)
+    const newBox = await Boxes.query().insertAndFetch(boxes)
 
-    console.log(newSave)
-
-    return res.status(200).json({ userCreatedPuzzle: newSave })
+    return res.status(200).json({ userCreatedPuzzle: newPuzzle })
     
   } catch (error) {
     if (error instanceof ValidationError) {
