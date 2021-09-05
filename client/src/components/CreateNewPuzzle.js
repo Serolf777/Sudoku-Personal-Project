@@ -6,6 +6,18 @@ import { Redirect } from "react-router";
 
 const CreateNewPuzzle = (props) => {
 
+  let hidePuzzle
+  let promptUser
+  if (props.userId === undefined) {
+    hidePuzzle = 'hidden'
+    promptUser = 
+      <p>
+        Log in so you can create some puzzles!
+      </p>
+  } else {
+    hidePuzzle = ''
+  }
+
   const [userCreatedPuzzle, setUserCreatedPuzzle] = useState({
     box1: [0,0,0,0,0,0,0,0,0],
     box2: [0,0,0,0,0,0,0,0,0],
@@ -105,7 +117,11 @@ for(const box in userCreatedPuzzle) {
 
 
   return(
-      <div className="callout primary">
+    <div className="callout primary headers center">
+      <div>
+        {promptUser}
+      </div>
+      <div className={`callout primary ${hidePuzzle}`}>
         <ErrorList errors={errors} />
         <div className="difficulty">
           <h2>Create New Puzzle!</h2>
@@ -121,6 +137,7 @@ for(const box in userCreatedPuzzle) {
           />
         </form>
       </div>
+    </div>
   )
 
 }
